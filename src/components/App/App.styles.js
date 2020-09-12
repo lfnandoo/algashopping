@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import bg from "../../assets/bg.svg";
+import styled from 'styled-components';
+import bg from '../../assets/bg.svg';
 
 export const Wrapper = styled.div`
   height: 100vh;
@@ -7,7 +7,6 @@ export const Wrapper = styled.div`
   background-image: url(${bg});
   background-size: cover;
   background-position: center center;
-
   display: flex;
   justify-content: center;
   align-items: center;
