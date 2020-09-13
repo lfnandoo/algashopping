@@ -1,13 +1,12 @@
 import React from "react";
-import Checkbox from "../../shared/Checkbox/Checkbox";
 import LineChart from "../../shared/LineChart/LineChart";
 import AppContainer from "../AppContainer/AppContainer";
 import AppHeader from "../AppHeader/AppHeader";
+import ShoppingList from "../ShoppingList/ShoppingList";
 import { Wrapper, Container } from "./App.styles";
+import productsMock from "../../mocks/products.json";
 
 export default function App() {
-  const [lettuce, setLettuce] = React.useState();
-
   const colors = ["#62CBC6", "#00ABAD", "#00858C", "#004D61"];
 
   return (
@@ -15,17 +14,8 @@ export default function App() {
       <Container>
         <AppHeader />
         <AppContainer
-          left={
-            <div>
-              produtos disponiveis:
-              <Checkbox
-                title="Alface"
-                onClick={() => setLettuce(!lettuce)}
-                value={lettuce}
-              />
-            </div>
-          }
-          middle={<div>sua lista de compras</div>}
+          left={<ShoppingList products={} title="produtos disponiveis" />}
+          middle={<ShoppingList products={} title="Sua lista de compras" />}
           right={
             <div>
               estatisticas{" "}
