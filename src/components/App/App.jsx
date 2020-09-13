@@ -7,7 +7,6 @@ import { Wrapper, Container } from "./App.styles";
 
 export default function App() {
   const [lettuce, setLettuce] = React.useState();
-  const [healthy, setHealthy] = React.useState(20);
 
   const colors = ["#62CBC6", "#00ABAD", "#00858C", "#004D61"];
 
