@@ -6,8 +6,8 @@ export default function AppContainer({ left, right, middle }) {
   return (
     <Wrapper>
       <div>{left}</div>
-      <div>{right}</div>
       <div>{middle}</div>
+      <div>{right}</div>
     </Wrapper>
   );
 }
