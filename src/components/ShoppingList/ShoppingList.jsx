@@ -4,27 +4,18 @@ import Checkbox from "../../shared/Checkbox/Checkbox";
 
 import { Wrapper, Title, Array } from "./ShoppingList.styles";
 
-export default function ShoppingList({ title }) {
+export default function ShoppingList({ title, products, onToggle }) {
   return (
     <Wrapper>
       <Title>{title}:</Title>
       <Array>
-        <Checkbox value={true} title="Alface" />
-        <Checkbox value={true} title="Alface" />
-        <Checkbox value={true} title="Alface" />
-        <Checkbox value={true} title="Alface" />
-        <Checkbox value={true} title="Alface" />
-        <Checkbox value={true} title="Alface" />
-        <Checkbox value={true} title="Alface" />
-        <Checkbox value={true} title="Alface" />
-        <Checkbox value={true} title="Alface" />
-        <Checkbox value={true} title="Alface" />
-        <Checkbox value={true} title="Alface" />
-        <Checkbox value={true} title="Alface" />
-        <Checkbox value={true} title="Alface" />
-        <Checkbox value={true} title="Alface" />
-        <Checkbox value={true} title="Alface" />
-        <Checkbox value={true} title="Alface" />
+        {products.map((product) => (
+          <Checkbox
+            value={product.checked}
+            title={product.name}
+            onClick={() => onToggle(product.id, product.checked)}
+          />
+        ))}
       </Array>
     </Wrapper>
   );

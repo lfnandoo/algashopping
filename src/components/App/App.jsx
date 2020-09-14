@@ -9,13 +9,39 @@ import productsMock from "../../mocks/products.json";
 export default function App() {
   const colors = ["#62CBC6", "#00ABAD", "#00858C", "#004D61"];
 
+  const [products, setProducts] = React.useState(productsMock.products);
+  const [selectedProducts, setSelectedProducts] = React.useState([]);
+
+  React.useEffect(() => {
+    const newSelectedProducts = products.filter((product) => product.checked);
+    setSelectedProducts(newSelectedProducts);
+  }, [products]);
+
+  function handleToggle(id, checked) {
+    const newProducts = products.map((product) =>
+      product.id === id ? { ...product, checked: !product.checked } : product
+    );
+    setProducts(newProducts);
+  }
+
   return (
     <Wrapper>
       <Container>
         <AppHeader />
         <AppContainer
-          left={<ShoppingList products={} title="produtos disponiveis" />}
-          middle={<ShoppingList products={} title="Sua lista de compras" />}
+          left={
+            <ShoppingList
+              title="produtos disponiveis"
+              products={products}
+              onToggle={handleToggle}
+            />
+          }
+          middle={
+            <ShoppingList
+              title="Sua lista de compras"
+              products={selectedProducts}
+            />
+          }
           right={
             <div>
               estatisticas{" "}
