@@ -5,6 +5,7 @@ import AppHeader from "../AppHeader/AppHeader";
 import ShoppingList from "../ShoppingList/ShoppingList";
 import { Wrapper, Container } from "./App.styles";
 import productsMock from "../../mocks/products.json";
+import extractPercentage from "../../utils/extractPercentage";
 
 export default function App() {
   const colors = ["#62CBC6", "#00ABAD", "#00858C", "#004D61"];
@@ -45,14 +46,46 @@ export default function App() {
           right={
             <div>
               estatisticas{" "}
-              <LineChart color={colors[0]} title="saudavel" percentage={80} />
+              <LineChart
+                color={colors[0]}
+                title="saudavel"
+                percentage={extractPercentage(
+                  selectedProducts.length,
+                  selectedProducts.filter((product) =>
+                    product.tags.includes("healthy")
+                  ).length
+                )}
+              />
               <LineChart
                 color={colors[1]}
                 title="nao tao saudavel"
-                percentage={20}
+                percentage={extractPercentage(
+                  selectedProducts.length,
+                  selectedProducts.filter((product) =>
+                    product.tags.includes("junk")
+                  ).length
+                )}
               />
-              <LineChart color={colors[2]} title="limpeza" percentage={35} />
-              <LineChart color={colors[3]} title="outros" percentage={15} />
+              <LineChart
+                color={colors[2]}
+                title="limpeza"
+                percentage={extractPercentage(
+                  selectedProducts.length,
+                  selectedProducts.filter((product) =>
+                    product.tags.includes("cleaning")
+                  ).length
+                )}
+              />
+              <LineChart
+                color={colors[3]}
+                title="outros"
+                percentage={extractPercentage(
+                  selectedProducts.length,
+                  selectedProducts.filter((product) =>
+                    product.tags.includes("others")
+                  ).length
+                )}
+              />
             </div>
           }
         />
