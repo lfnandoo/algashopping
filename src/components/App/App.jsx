@@ -12,6 +12,7 @@ export default function App() {
 
   const [products, setProducts] = React.useState(productsMock.products);
   const [selectedProducts, setSelectedProducts] = React.useState([]);
+  const [totalPrice, setTotalPrice] = React.useState(0);
 
   React.useEffect(() => {
     const newSelectedProducts = products.filter((product) => product.checked);
@@ -24,6 +25,13 @@ export default function App() {
     );
     setProducts(newProducts);
   }
+
+  React.useEffect(() => {
+    const total = selectedProducts
+      .map((product) => product.price)
+      .reduce((a, b) => a + b, 0);
+    setTotalPrice(total);
+  }, [selectedProducts]);
 
   return (
     <Wrapper>
@@ -86,6 +94,12 @@ export default function App() {
                   ).length
                 )}
               />
+              <div style={{ marginTop: 12 }}>
+                <h2 style={{ fontWeight: 400, fontSize: 12, color: "#00364A" }}>
+                  previsão de gastos:
+                </h2>
+                <div style={{ fontSize: 24 }}>{totalPrice}</div>
+              </div>
             </div>
           }
         />
