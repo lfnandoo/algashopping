@@ -98,7 +98,13 @@ export default function App() {
                 <h2 style={{ fontWeight: 400, fontSize: 12, color: "#00364A" }}>
                   previsão de gastos:
                 </h2>
-                <div style={{ fontSize: 24 }}>{totalPrice}</div>
+                <div style={{ fontSize: 24 }}>
+                  {totalPrice.toLocaleString("pt-br", {
+                    minimunFractionDigits: 2,
+                    style: "currency",
+                    currency: "BRL",
+                  })}
+                </div>
               </div>
             </div>
           }
