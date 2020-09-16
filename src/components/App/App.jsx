@@ -45,7 +45,8 @@ export default function App() {
           middle={
             <ShoppingList
               title="Sua lista de compras"
-              products={selectedProducts}
+              displayOnlySelected
+              onToggle={handleToggle}
             />
           }
           right={
