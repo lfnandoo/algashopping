@@ -1,37 +1,34 @@
 import React from "react";
+import { useSelector, useDispatch } from "react-redux";
+
 import LineChart from "../../shared/LineChart/LineChart";
+
 import AppContainer from "../AppContainer/AppContainer";
 import AppHeader from "../AppHeader/AppHeader";
 import ShoppingList from "../ShoppingList/ShoppingList";
-import { Wrapper, Container } from "./App.styles";
-import productsMock from "../../mocks/products.json";
+
 import extractPercentage from "../../utils/extractPercentage";
 
+import { Wrapper, Container } from "./App.styles";
+
+import {
+  selectAllProducts,
+  selectSelectedProducts,
+  selectSelectedProductsTotalPrice,
+} from "../../store/Products/Products.selectors";
+import { toggleProduct } from "../../store/Products/Products.actions";
+
 export default function App() {
+  const dispatch = useDispatch();
   const colors = ["#62CBC6", "#00ABAD", "#00858C", "#004D61"];
 
-  const [products, setProducts] = React.useState(productsMock.products);
-  const [selectedProducts, setSelectedProducts] = React.useState([]);
-  const [totalPrice, setTotalPrice] = React.useState(0);
+  const products = useSelector(selectAllProducts);
+  const selectedProducts = useSelector(selectSelectedProducts);
+  const totalPrice = useSelector(selectSelectedProductsTotalPrice);
 
-  React.useEffect(() => {
-    const newSelectedProducts = products.filter((product) => product.checked);
-    setSelectedProducts(newSelectedProducts);
-  }, [products]);
-
-  function handleToggle(id, checked) {
-    const newProducts = products.map((product) =>
-      product.id === id ? { ...product, checked: !product.checked } : product
-    );
-    setProducts(newProducts);
+  function handleToggle(id) {
+    dispatch(toggleProduct(id));
   }
-
-  React.useEffect(() => {
-    const total = selectedProducts
-      .map((product) => product.price)
-      .reduce((a, b) => a + b, 0);
-    setTotalPrice(total);
-  }, [selectedProducts]);
 
   return (
     <Wrapper>
